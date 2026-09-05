@@ -58,7 +58,7 @@ The Android app loads the deployed website from a single configuration variable:
 
 ```bash
 # In .env (or environment variables)
-EXPO_PUBLIC_WEB_URL=https://pashu-pehchan.vercel.app
+EXPO_PUBLIC_WEB_URL=https://pashu-pehchan1.vercel.app
 ```
 
 ### Supported Environments:
@@ -131,7 +131,7 @@ Create a `.env` file in `pashupehchan-android/`:
 
 ```ini
 # PashuPehchan Android Configuration
-EXPO_PUBLIC_WEB_URL=https://pashu-pehchan.vercel.app
+EXPO_PUBLIC_WEB_URL=https://pashu-pehchan1.vercel.app
 ```
 
 ---

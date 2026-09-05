@@ -19,7 +19,7 @@ import { useCameraPermissions } from 'expo-camera';
 import * as Location from 'expo-location';
 
 // Configurable target PashuPehchan website URL
-const DEFAULT_WEB_URL = 'https://pashu-pehchan.vercel.app';
+const DEFAULT_WEB_URL = 'https://pashu-pehchan1.vercel.app';
 const WEB_URL = process.env.EXPO_PUBLIC_WEB_URL || DEFAULT_WEB_URL;
 
 export default function App() {
