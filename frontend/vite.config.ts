@@ -4,10 +4,14 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    alias: {
-      'react-native': 'react-native-web',
-    },
+    alias: [
+      { find: 'react-native', replacement: 'react-native-web' },
+      { find: /(.*)\.native$/, replacement: '$1.web' },
+    ],
     extensions: ['.web.js', '.web.jsx', '.web.ts', '.web.tsx', '.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
+  },
+  optimizeDeps: {
+    exclude: ['@react-native-async-storage/async-storage', 'expo-location', 'expo-image-picker'],
   },
   server: {
     port: 3000,

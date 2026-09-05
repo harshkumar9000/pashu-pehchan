@@ -23,7 +23,7 @@ import {
 import { colors } from '../theme/colors';
 import { GuidanceCard } from '../components/GuidanceCard';
 import { CameraModal } from '../components/adapters/camera';
-import { predictImage } from '../services/api';
+import { predictImage, getApiBaseUrl } from '../services/api';
 import { PredictResponse } from '../types';
 
 interface ScanScreenProps {
@@ -81,6 +81,10 @@ export const ScanScreen: React.FC<ScanScreenProps> = ({
   };
 
   const processFile = (file: File | Blob) => {
+    if (file.type && !file.type.startsWith('image/')) {
+      setErrorMsg('Please select a valid image file (JPEG, PNG, or WebP).');
+      return;
+    }
     setErrorMsg(null);
     setSelectedImage(file);
     const url = URL.createObjectURL(file);
@@ -125,10 +129,33 @@ export const ScanScreen: React.FC<ScanScreenProps> = ({
     setLoadingSample(true);
     setErrorMsg(null);
     try {
-      const res = await fetch(`/api/sample/${encodeURIComponent(breedName)}`);
-      if (!res.ok) throw new Error(`Could not fetch sample for ${breedName}`);
+      const slug = breedName.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const baseUrl = getApiBaseUrl();
+
+      // 1. Try backend API first, fallback to static public asset
+      let res: Response | null = null;
+      try {
+        res = await fetch(`${baseUrl}/api/sample/${encodeURIComponent(breedName)}`);
+      } catch {
+        res = null;
+      }
+
+      if (!res || !res.ok) {
+        res = await fetch(`/samples/${slug}.jpg`);
+      }
+
+      if (!res.ok) {
+        throw new Error(`Could not load sample image for ${breedName} (HTTP ${res.status}).`);
+      }
+
+      const contentType = res.headers.get('content-type') || '';
+      if (contentType.includes('text/html')) {
+        throw new Error(`Invalid response for ${breedName} sample: expected image, received HTML.`);
+      }
+
       const blob = await res.blob();
-      processFile(blob);
+      const file = new File([blob], `${slug}_sample.jpg`, { type: 'image/jpeg' });
+      processFile(file);
     } catch (err: any) {
       setErrorMsg(`Failed to load ${breedName} sample: ${err.message}`);
     } finally {
@@ -142,11 +169,17 @@ export const ScanScreen: React.FC<ScanScreenProps> = ({
       return;
     }
 
+    if (selectedImage.type && !selectedImage.type.startsWith('image/')) {
+      setErrorMsg('Selected file is not an image. Please choose a valid photo.');
+      return;
+    }
+
     setLoading(true);
     setErrorMsg(null);
 
     try {
-      const response = await predictImage(selectedImage, 'cattle_upload.jpg');
+      const filename = (selectedImage as File).name || 'cattle_upload.jpg';
+      const response = await predictImage(selectedImage, filename);
       if (previewUrl) {
         onPredictionComplete(response, previewUrl, animalTag.trim());
       }
