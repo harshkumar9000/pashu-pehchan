@@ -1,0 +1,51 @@
+# Configuration for Cattle & Buffalo Breed Classification ML Pipeline
+# PS-5: AI-Driven Cattle & Buffalo Breed Identification
+
+seed: 42
+
+dataset:
+  root: "./data"
+  train_dir: "./data/train"
+  val_dir: "./data/val"
+  test_dir: "./data/test"
+  external_test_dir: "./data/external_test"
+  image_size: 224
+  num_workers: 0  # Set to 0 for Windows compatibility
+  pin_memory: true
+
+training:
+  batch_size: 32
+  stage1_epochs: 5      # Frozen backbone, train classification head
+  stage2_epochs: 3      # Unfreeze backbone, fine-tune entire network
+  head_lr: 0.0001       # Stage 1 learning rate (AdamW)
+  fine_tune_lr: 0.00001 # Stage 2 learning rate (AdamW)
+  weight_decay: 0.0001
+  imbalance_handling: "weighted_loss"  # Options: "weighted_loss", "sampler", "none"
+  early_stopping_patience: 3
+  lr_scheduler: "cosine"  # Options: "cosine", "plateau", "none"
+
+model:
+  architecture: "efficientnet_b0"  # Supported: "efficientnet_b0", "efficientnet_b1", "mobilenet_v3_large"
+  pretrained: true
+  dropout: 0.3
+
+evaluation:
+  top_k: 3
+
+confidence_thresholds:
+  high: 0.75
+  medium: 0.45
+  unknown_cutoff: 0.20
+  recommendations:
+    high: "High model confidence — human verification still required."
+    medium: "Moderate confidence — verify before recording."
+    low: "Low confidence — manual verification recommended."
+    unknown: "Unknown or unidentifiable breed — manual verification required."
+
+artifacts:
+  dir: "./artifacts"
+  export_onnx: false
+  onnx_filename: "cattle_breed_classifier.onnx"
+
+device:
+  auto: true  # Auto-detect CUDA, MPS, or CPU

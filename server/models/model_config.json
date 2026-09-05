@@ -1,0 +1,32 @@
+{
+  "architecture": "efficientnet_b0",
+  "model_version": "efficientnet_b0-41c-2026-09-04",
+  "num_classes": 41,
+  "input_size": 224,
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "best_val_accuracy": 31.990794016110474,
+  "best_val_loss": 3.00605627033598,
+  "total_training_epochs": 8,
+  "confidence_thresholds": {
+    "high": 0.75,
+    "medium": 0.45,
+    "unknown_cutoff": 0.2,
+    "recommendations": {
+      "high": "High model confidence \u2014 human verification still required.",
+      "medium": "Moderate confidence \u2014 verify before recording.",
+      "low": "Low confidence \u2014 manual verification recommended.",
+      "unknown": "Unknown or unidentifiable breed \u2014 manual verification required."
+    }
+  }
+}

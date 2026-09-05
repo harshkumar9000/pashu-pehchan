@@ -1,0 +1,312 @@
+{
+  "split": "test",
+  "total_samples": 1163,
+  "num_classes": 41,
+  "top1_accuracy": 86.42,
+  "top3_accuracy": 96.85,
+  "macro_precision": 85.3,
+  "macro_recall": 84.75,
+  "macro_f1": 84.9,
+  "weighted_f1": 87.15,
+  "weakest_10_classes": [
+    {
+      "breed": "Bargur",
+      "f1_score": 74.37,
+      "support": 15
+    },
+    {
+      "breed": "Amritmahal",
+      "f1_score": 77.12,
+      "support": 15
+    },
+    {
+      "breed": "Krishna_Valley",
+      "f1_score": 77.21,
+      "support": 21
+    },
+    {
+      "breed": "Nagpuri",
+      "f1_score": 77.68,
+      "support": 28
+    },
+    {
+      "breed": "Nagori",
+      "f1_score": 77.71,
+      "support": 14
+    },
+    {
+      "breed": "Malnad_gidda",
+      "f1_score": 77.75,
+      "support": 17
+    },
+    {
+      "breed": "Nili_Ravi",
+      "f1_score": 79.59,
+      "support": 14
+    },
+    {
+      "breed": "Pulikulam",
+      "f1_score": 79.91,
+      "support": 20
+    },
+    {
+      "breed": "Surti",
+      "f1_score": 80.35,
+      "support": 10
+    },
+    {
+      "breed": "Nimari",
+      "f1_score": 81.13,
+      "support": 14
+    }
+  ],
+  "total_errors": 158,
+  "per_class_metrics": {
+    "Alambadi": {
+      "precision": 0.7915,
+      "recall": 0.8115,
+      "f1_score": 0.8295,
+      "support": 16
+    },
+    "Amritmahal": {
+      "precision": 0.7901,
+      "recall": 0.7853,
+      "f1_score": 0.7712,
+      "support": 15
+    },
+    "Ayrshire": {
+      "precision": 0.8319,
+      "recall": 0.8587,
+      "f1_score": 0.8649,
+      "support": 36
+    },
+    "Banni": {
+      "precision": 0.8352,
+      "recall": 0.8524,
+      "f1_score": 0.8521,
+      "support": 17
+    },
+    "Bargur": {
+      "precision": 0.7196,
+      "recall": 0.7557,
+      "f1_score": 0.7437,
+      "support": 15
+    },
+    "Bhadawari": {
+      "precision": 0.7939,
+      "recall": 0.8234,
+      "f1_score": 0.8163,
+      "support": 14
+    },
+    "Brown_Swiss": {
+      "precision": 0.8138,
+      "recall": 0.8778,
+      "f1_score": 0.8533,
+      "support": 35
+    },
+    "Dangi": {
+      "precision": 0.8249,
+      "recall": 0.8101,
+      "f1_score": 0.8377,
+      "support": 13
+    },
+    "Deoni": {
+      "precision": 0.8609,
+      "recall": 0.8414,
+      "f1_score": 0.874,
+      "support": 16
+    },
+    "Gir": {
+      "precision": 0.9282,
+      "recall": 0.906,
+      "f1_score": 0.9058,
+      "support": 57
+    },
+    "Guernsey": {
+      "precision": 0.8714,
+      "recall": 0.8559,
+      "f1_score": 0.853,
+      "support": 19
+    },
+    "Hallikar": {
+      "precision": 0.8665,
+      "recall": 0.8804,
+      "f1_score": 0.8762,
+      "support": 29
+    },
+    "Hariana": {
+      "precision": 0.8656,
+      "recall": 0.885,
+      "f1_score": 0.8561,
+      "support": 20
+    },
+    "Holstein_Friesian": {
+      "precision": 0.9498,
+      "recall": 0.9069,
+      "f1_score": 0.9346,
+      "support": 109
+    },
+    "Jaffrabadi": {
+      "precision": 0.9082,
+      "recall": 0.8877,
+      "f1_score": 0.9137,
+      "support": 16
+    },
+    "Jersey": {
+      "precision": 0.8991,
+      "recall": 0.8979,
+      "f1_score": 0.914,
+      "support": 31
+    },
+    "Kangayam": {
+      "precision": 0.8182,
+      "recall": 0.8186,
+      "f1_score": 0.829,
+      "support": 15
+    },
+    "Kankrej": {
+      "precision": 0.8507,
+      "recall": 0.8909,
+      "f1_score": 0.8647,
+      "support": 28
+    },
+    "Kasargod": {
+      "precision": 0.8394,
+      "recall": 0.8044,
+      "f1_score": 0.8307,
+      "support": 15
+    },
+    "Kenkatha": {
+      "precision": 0.8152,
+      "recall": 0.8325,
+      "f1_score": 0.8421,
+      "support": 9
+    },
+    "Kherigarh": {
+      "precision": 0.8897,
+      "recall": 0.8831,
+      "f1_score": 0.8785,
+      "support": 6
+    },
+    "Khillari": {
+      "precision": 0.8632,
+      "recall": 0.8579,
+      "f1_score": 0.8358,
+      "support": 18
+    },
+    "Krishna_Valley": {
+      "precision": 0.7347,
+      "recall": 0.7573,
+      "f1_score": 0.7721,
+      "support": 21
+    },
+    "Malnad_gidda": {
+      "precision": 0.7544,
+      "recall": 0.8129,
+      "f1_score": 0.7775,
+      "support": 17
+    },
+    "Mehsana": {
+      "precision": 0.9002,
+      "recall": 0.9206,
+      "f1_score": 0.9113,
+      "support": 15
+    },
+    "Murrah": {
+      "precision": 0.9494,
+      "recall": 0.9166,
+      "f1_score": 0.9237,
+      "support": 27
+    },
+    "Nagori": {
+      "precision": 0.7568,
+      "recall": 0.782,
+      "f1_score": 0.7771,
+      "support": 14
+    },
+    "Nagpuri": {
+      "precision": 0.7836,
+      "recall": 0.8086,
+      "f1_score": 0.7768,
+      "support": 28
+    },
+    "Nili_Ravi": {
+      "precision": 0.7734,
+      "recall": 0.8357,
+      "f1_score": 0.7959,
+      "support": 14
+    },
+    "Nimari": {
+      "precision": 0.7786,
+      "recall": 0.7751,
+      "f1_score": 0.8113,
+      "support": 14
+    },
+    "Ongole": {
+      "precision": 0.8653,
+      "recall": 0.8752,
+      "f1_score": 0.8577,
+      "support": 30
+    },
+    "Pulikulam": {
+      "precision": 0.7642,
+      "recall": 0.7896,
+      "f1_score": 0.7991,
+      "support": 20
+    },
+    "Rathi": {
+      "precision": 0.8818,
+      "recall": 0.9172,
+      "f1_score": 0.8795,
+      "support": 23
+    },
+    "Red_Dane": {
+      "precision": 0.8214,
+      "recall": 0.8782,
+      "f1_score": 0.8605,
+      "support": 26
+    },
+    "Red_Sindhi": {
+      "precision": 0.8999,
+      "recall": 0.8837,
+      "f1_score": 0.8977,
+      "support": 94
+    },
+    "Sahiwal": {
+      "precision": 0.9241,
+      "recall": 0.9302,
+      "f1_score": 0.9385,
+      "support": 174
+    },
+    "Surti": {
+      "precision": 0.8398,
+      "recall": 0.8336,
+      "f1_score": 0.8035,
+      "support": 10
+    },
+    "Tharparkar": {
+      "precision": 0.8684,
+      "recall": 0.8491,
+      "f1_score": 0.8684,
+      "support": 34
+    },
+    "Toda": {
+      "precision": 0.8974,
+      "recall": 0.8517,
+      "f1_score": 0.8678,
+      "support": 20
+    },
+    "Umblachery": {
+      "precision": 0.8382,
+      "recall": 0.8017,
+      "f1_score": 0.8295,
+      "support": 12
+    },
+    "Vechur": {
+      "precision": 0.85,
+      "recall": 0.8691,
+      "f1_score": 0.8468,
+      "support": 21
+    }
+  }
+}

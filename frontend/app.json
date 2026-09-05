@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "PashuPehchan - Livestock AI",
+    "slug": "pashupehchan-livestock",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#166534"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pashupehchan.livestock",
+      "infoPlist": {
+        "NSCameraUsageDescription": "PashuPehchan requires camera access to capture cattle and buffalo photos for instant breed identification.",
+        "NSPhotoLibraryUsageDescription": "PashuPehchan requires access to your photo library to select livestock images for verification.",
+        "NSLocationWhenInUseUsageDescription": "PashuPehchan uses your location to discover nearby government veterinary polyclinics."
+      }
+    },
+    "android": {
+      "package": "com.pashupehchan.livestock",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#166534"
+      },
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CALL_PHONE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow PashuPehchan to access camera to classify indigenous livestock breeds."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow PashuPehchan to use location to discover nearby veterinary clinics."
+        }
+      ]
+    ]
+  }
+}

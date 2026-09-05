@@ -1,0 +1,44 @@
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+
+# Large Dataset Storage & Zips
+data/
+KaggleDataset.zip
+*.tar
+*.gz
+*.zip
+*.whl
+
+# Exported large weights
+artifacts/*.pth
+artifacts/*.onnx
+
+# System & OS files
+Thumbs.db
+.DS_Store
+._*
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.eslintcache
+*.tsbuildinfo
+
+# Local Environment
+.env
+.env.local

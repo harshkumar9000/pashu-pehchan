@@ -1,0 +1,52 @@
+Cattle & Buffalo Breed Classification Report - TEST
+Top-1 Accuracy: 40.41%
+Top-3 Accuracy: 69.39%
+Macro F1: 28.19%
+
+                   precision    recall  f1-score   support
+
+         Alambadi       0.50      0.19      0.27        16
+       Amritmahal       0.20      0.07      0.10        15
+         Ayrshire       0.63      0.75      0.68        36
+            Banni       0.18      0.41      0.25        17
+           Bargur       0.37      0.73      0.49        15
+        Bhadawari       0.15      0.36      0.21        14
+      Brown_Swiss       0.50      0.46      0.48        35
+            Dangi       0.40      0.62      0.48        13
+            Deoni       0.43      0.19      0.26        16
+              Gir       0.43      0.37      0.40        57
+         Guernsey       0.55      0.58      0.56        19
+         Hallikar       0.35      0.31      0.33        29
+          Hariana       0.20      0.15      0.17        20
+Holstein_Friesian       0.90      0.61      0.73       109
+       Jaffrabadi       0.30      0.19      0.23        16
+           Jersey       0.31      0.77      0.44        31
+         Kangayam       0.14      0.20      0.17        15
+          Kankrej       0.29      0.32      0.31        28
+         Kasargod       0.20      0.07      0.10        15
+         Kenkatha       0.00      0.00      0.00         9
+        Kherigarh       0.50      0.17      0.25         6
+         Khillari       0.21      0.22      0.22        18
+   Krishna_Valley       0.36      0.24      0.29        21
+     Malnad_gidda       0.17      0.12      0.14        17
+          Mehsana       0.29      0.33      0.31        15
+           Murrah       0.25      0.59      0.35        27
+           Nagori       0.00      0.00      0.00        14
+          Nagpuri       0.00      0.00      0.00        28
+        Nili_Ravi       0.10      0.07      0.08        14
+           Nimari       0.00      0.00      0.00        14
+           Ongole       0.30      0.40      0.34        30
+        Pulikulam       0.17      0.20      0.18        20
+            Rathi       0.50      0.39      0.44        23
+         Red_Dane       0.25      0.08      0.12        26
+       Red_Sindhi       0.50      0.02      0.04        94
+          Sahiwal       0.56      0.76      0.65       174
+            Surti       0.00      0.00      0.00        10
+       Tharparkar       0.31      0.50      0.39        34
+             Toda       0.31      0.55      0.40        20
+       Umblachery       0.44      0.33      0.38        12
+           Vechur       0.23      0.52      0.32        21
+
+         accuracy                           0.40      1163
+        macro avg       0.30      0.31      0.28      1163
+     weighted avg       0.41      0.40      0.37      1163
