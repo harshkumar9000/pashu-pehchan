@@ -56,10 +56,43 @@
       button, a, [role="button"] {
         transition: opacity 0.2s ease, transform 0.15s ease;
       }
+      /* Clean Google Translate Integration - hide default top bar & tooltip */
+      .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
+        display: none !important;
+        visibility: hidden !important;
+      }
+      body {
+        top: 0px !important;
+        position: static !important;
+      }
+      .goog-te-gadget {
+        display: none !important;
+      }
+      .goog-tooltip, #goog-gt-tt, .goog-te-balloon-frame {
+        display: none !important;
+      }
+      .goog-text-highlight {
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
     </style>
   </head>
   <body>
+    <div id="google_translate_element" style="display:none;"></div>
     <div id="root"></div>
+    <script type="text/javascript">
+      window.googleTranslateElementInit = function() {
+        if (window.google && window.google.translate) {
+          new window.google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,bn,pa,ta,te',
+            autoDisplay: false
+          }, 'google_translate_element');
+        }
+      };
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

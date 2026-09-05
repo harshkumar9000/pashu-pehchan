@@ -22,6 +22,8 @@ import {
 import { colors } from '../theme/colors';
 import { ScreenName, UserRole } from '../types';
 import { useAuth } from '../context/AuthContext';
+import { DynamicSearchBar } from './DynamicSearchBar';
+import { LanguageSelector } from './LanguageSelector';
 
 interface DesktopTopBarProps {
   currentScreen: ScreenName;
@@ -182,19 +184,13 @@ export const DesktopTopBar: React.FC<DesktopTopBarProps> = ({
         </View>
       </View>
 
-      {/* Right: Quick Search + Fast CTA + Role + Model */}
+      {/* Right: Quick Search + Translate + Fast CTA + Role + Model */}
       <View style={styles.actionsArea}>
-        {/* Global Search Bar */}
-        <View style={styles.searchBox}>
-          <Search size={15} color={colors.textMuted} />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search ear tag, breed, or town..."
-            placeholderTextColor={colors.textMuted}
-            value={searchQuery}
-            onChangeText={handleSearch}
-          />
-        </View>
+        {/* Global Dynamic Search Bar with live word suggestions */}
+        <DynamicSearchBar onNavigate={onNavigate} compact />
+
+        {/* Global Whole-site Language Selector */}
+        <LanguageSelector compact />
 
         {/* Primary CTA: Scan New Bovine */}
         {currentScreen !== 'scan' && (

@@ -13,6 +13,7 @@ import { BottomNav } from './components/BottomNav';
 import { DesktopSidebar } from './components/DesktopSidebar';
 import { DesktopTopBar } from './components/DesktopTopBar';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Screens
 import { LandingScreen } from './screens/LandingScreen';
@@ -485,9 +486,11 @@ const MainNavigator: React.FC = () => {
 
 export const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <MainNavigator />
-    </AuthProvider>
+    <LanguageProvider>
+      <AuthProvider>
+        <MainNavigator />
+      </AuthProvider>
+    </LanguageProvider>
   );
 };
 

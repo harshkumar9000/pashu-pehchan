@@ -4,6 +4,7 @@ import { ShieldCheck, Info, UserCheck, ChevronDown, Bell, Check } from 'lucide-r
 import { colors } from '../theme/colors';
 import { ScreenName, UserRole } from '../types';
 import { useAuth } from '../context/AuthContext';
+import { LanguageSelector } from './LanguageSelector';
 
 interface HeaderProps {
   currentScreen: ScreenName;
@@ -73,6 +74,9 @@ export const Header: React.FC<HeaderProps> = ({
         </TouchableOpacity>
 
         <View style={styles.rightActions}>
+          {/* Whole-site Language Selector */}
+          <LanguageSelector compact />
+
           {/* Quick Role Switcher for Hackathon Demo */}
           <View style={styles.roleDropdownWrapper}>
             <TouchableOpacity

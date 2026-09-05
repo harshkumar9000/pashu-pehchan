@@ -67,7 +67,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             setToken(data.access_token);
             setUser(data.user);
           } catch (loginErr) {
-            console.warn('Initial demo farmer auto-login failed:', loginErr);
+            console.log('[Auth] Backend offline, using demo farmer profile for client-side mode');
+            const demoFarmer: User = {
+              id: 1,
+              email: 'farmer@vetra.in',
+              name: 'Ramesh Patel',
+              role: 'FARMER',
+              phone: '+91 98765 43210',
+              district: 'Anand',
+              state: 'Gujarat',
+              created_at: new Date().toISOString(),
+            };
+            setUser(demoFarmer);
+            setToken('demo-token-farmer');
           }
         }
       } catch (err) {
@@ -130,13 +142,51 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         email = 'admin@vetra.in';
         pass = 'admin123';
       }
-      const data = await authService.login(email, pass);
-      setAuthToken(data.access_token);
-      setToken(data.access_token);
-      setUser(data.user);
+      try {
+        const data = await authService.login(email, pass);
+        setAuthToken(data.access_token);
+        setToken(data.access_token);
+        setUser(data.user);
+      } catch (loginErr) {
+        // Fallback for offline / Vercel client mode
+        const demoUsers: Record<UserRole, User> = {
+          FARMER: {
+            id: 1,
+            email: 'farmer@vetra.in',
+            name: 'Ramesh Patel',
+            role: 'FARMER',
+            phone: '+91 98765 43210',
+            district: 'Anand',
+            state: 'Gujarat',
+            created_at: new Date().toISOString(),
+          },
+          MIDDLEMAN: {
+            id: 2,
+            email: 'middleman@vetra.in',
+            name: 'Kishore Verma',
+            role: 'MIDDLEMAN',
+            phone: '+91 98111 22334',
+            district: 'Mathura',
+            state: 'Uttar Pradesh',
+            created_at: new Date().toISOString(),
+          },
+          ADMIN: {
+            id: 3,
+            email: 'admin@vetra.in',
+            name: 'Dr. Sunita Rao',
+            role: 'ADMIN',
+            phone: '+91 99000 11223',
+            district: 'Karnal',
+            state: 'Haryana',
+            created_at: new Date().toISOString(),
+          },
+        };
+        const demo = demoUsers[targetRole];
+        setUser(demo);
+        setToken('demo-token-' + targetRole.toLowerCase());
+      }
     } catch (err: any) {
       console.error('switchDemoRole error:', err);
-      throw new Error('Unable to switch account. Please try again.');
     } finally {
       setIsLoading(false);
     }

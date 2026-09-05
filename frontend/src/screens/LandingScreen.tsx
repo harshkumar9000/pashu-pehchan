@@ -37,6 +37,9 @@ import {
 import { colors } from '../theme/colors';
 import { ScreenName, UserRole } from '../types';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
+import { DynamicSearchBar } from '../components/DynamicSearchBar';
+import { LanguageSelector } from '../components/LanguageSelector';
 
 interface LandingScreenProps {
   onNavigate: (screen: ScreenName) => void;
@@ -44,6 +47,7 @@ interface LandingScreenProps {
 
 export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
   const { switchDemoRole } = useAuth();
+  const { t } = useLanguage();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('signup');
   const [pricingCycle, setPricingCycle] = useState<'monthly' | 'yearly'>('monthly');
@@ -95,34 +99,39 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
           <View style={styles.navLinks}>
             <TouchableOpacity style={styles.navPillActive} activeOpacity={0.8}>
               <Compass size={14} color={colors.primary} />
-              <Text style={styles.navPillActiveText}>Product</Text>
+              <Text style={styles.navPillActiveText}>{t('product')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.navLink} activeOpacity={0.7} onPress={() => onNavigate('breeds')}>
-              <Text style={styles.navLinkText}>Features</Text>
+              <Text style={styles.navLinkText}>{t('features')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.navLink} activeOpacity={0.7} onPress={() => onNavigate('farmer_marketplace')}>
-              <Text style={styles.navLinkText}>Marketplace</Text>
+              <Text style={styles.navLinkText}>{t('marketplace')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.navLink} activeOpacity={0.7} onPress={() => onNavigate('vets')}>
-              <Text style={styles.navLinkText}>Veterinary 24x7</Text>
+              <Text style={styles.navLinkText}>{t('veterinary')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.navLink} activeOpacity={0.7} onPress={() => onNavigate('system_info')}>
-              <Text style={styles.navLinkText}>AI Model</Text>
+              <Text style={styles.navLinkText}>{t('aiModel')}</Text>
             </TouchableOpacity>
           </View>
 
-          {/* Top Right: Log in & Sign up Buttons */}
+          {/* Dynamic Real-Time Search Bar */}
+          <DynamicSearchBar onNavigate={onNavigate} />
+
+          {/* Top Right: Translate & Log in / Sign up Buttons */}
           <View style={styles.navRight}>
+            <LanguageSelector />
+
             <TouchableOpacity
               style={styles.loginBtn}
               onPress={() => handleOpenAuth('login')}
               activeOpacity={0.7}
             >
-              <Text style={styles.loginBtnText}>Log in</Text>
+              <Text style={styles.loginBtnText}>{t('login')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -130,7 +139,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
               onPress={() => handleOpenAuth('signup')}
               activeOpacity={0.85}
             >
-              <Text style={styles.signupBtnText}>Sign up</Text>
+              <Text style={styles.signupBtnText}>{t('signup')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -148,15 +157,13 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
 
         {/* Hero Title */}
         <Text style={styles.heroTitle}>
-          From Planting to Harvest -{'\n'}
-          <Text style={styles.heroTitleItalic}>One Farming Dashboard</Text>
+          Pashu Ko Pehchano,{'\n'}
+          <Text style={styles.heroTitleItalic}>Behtar Sambhalo</Text>
         </Text>
 
         {/* Hero Subtitle */}
         <Text style={styles.heroSubtitle}>
-          Get a clear and comprehensive overview of your entire livestock & agricultural operation.
-          Make smarter decisions for your herd with PashuPehchan, the interactive dashboard app that simplifies
-          indigenous breed identification, health, and fair trade.
+          {t('heroSubtitle')}
         </Text>
 
         {/* Hero CTAs */}
@@ -166,7 +173,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
             onPress={() => handleOpenAuth('signup')}
             activeOpacity={0.85}
           >
-            <Text style={styles.primaryCtaText}>Start Free Trial</Text>
+            <Text style={styles.primaryCtaText}>{t('startFreeTrial')}</Text>
             <ArrowUpRight size={18} color="#ffffff" />
           </TouchableOpacity>
 
@@ -175,7 +182,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
             onPress={() => onNavigate('scan')}
             activeOpacity={0.85}
           >
-            <Text style={styles.secondaryCtaText}>How it Works</Text>
+            <Text style={styles.secondaryCtaText}>{t('howItWorks')}</Text>
             <View style={styles.playIconCircle}>
               <Play size={12} color="#ffffff" fill="#ffffff" style={{ marginLeft: 2 }} />
             </View>
@@ -184,30 +191,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
 
         {/* ================= 3. CENTERPIECE: ANIMATED VECTOR COW & DASHBOARD ================= */}
         <View style={styles.dashboardHeroFrame}>
-          {/* Header Row of Mockup Window */}
-          <View style={styles.dashboardMockupHeader}>
-            <View style={styles.mockupHeaderLeft}>
-              <View style={styles.mockupLogoDot} />
-              <View>
-                <Text style={styles.mockupGreeting}>Hi, Ramesh!</Text>
-                <Text style={styles.mockupGreetingSub}>Your herd is healthy and AI verification is synced</Text>
-              </View>
-            </View>
-
-            <View style={styles.mockupSearchWrap}>
-              <Text style={styles.mockupSearchPlaceholder}>🔍 Search herd ear tag or breed...</Text>
-            </View>
-
-            <TouchableOpacity
-              style={styles.mockupUpgradePill}
-              onPress={() => handleSelectRoleAndEnter('FARMER')}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.mockupUpgradeText}>Open App</Text>
-              <ArrowRight size={14} color="#ffffff" />
-            </TouchableOpacity>
-          </View>
-
           {/* Pastoral Landscape View with Animated Vector Cow */}
           <View style={styles.pastoralCanvas}>
             {/* Pastoral Nature Background SVG with Rolling Hills & Sky */}
@@ -870,7 +853,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
                     <Text style={{ fontSize: 20 }}>👨‍🌾</Text>
                   </View>
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.roleCardTitle}>Dairy Farmer (Ramesh Patel)</Text>
+                    <Text style={styles.roleCardTitle}>Dairy Farmer</Text>
                     <Text style={styles.roleCardSub}>Cattle herd management, AI breed scanning & direct selling</Text>
                   </View>
                   <ArrowRight size={16} color={colors.primary} />
@@ -885,7 +868,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
                     <Text style={{ fontSize: 20 }}>🤝</Text>
                   </View>
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.roleCardTitle}>Livestock Trader (Kishore Bhai)</Text>
+                    <Text style={styles.roleCardTitle}>Livestock Trader / Middleman</Text>
                     <Text style={styles.roleCardSub}>Wholesale procurement, side-by-side comparison & trade offers</Text>
                   </View>
                   <ArrowRight size={16} color="#D97706" />
@@ -900,7 +883,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onNavigate }) => {
                     <Text style={{ fontSize: 20 }}>🏛️</Text>
                   </View>
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.roleCardTitle}>DAHD Supervisor (Govt Admin)</Text>
+                    <Text style={styles.roleCardTitle}>Government / DAHD Supervisor</Text>
                     <Text style={styles.roleCardSub}>Model performance telemetry, audit trail & national standards</Text>
                   </View>
                   <ArrowRight size={16} color="#0284C7" />
@@ -940,11 +923,12 @@ const styles = StyleSheet.create({
   navBar: {
     backgroundColor: '#FFFFFF',
     borderRadius: 40,
-    paddingVertical: 12,
-    paddingHorizontal: 22,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    gap: 12,
     borderWidth: 1,
     borderColor: '#E2EFE7',
     boxShadow: '0 4px 20px rgba(15, 61, 36, 0.05)',
@@ -1144,65 +1128,6 @@ const styles = StyleSheet.create({
     borderColor: '#E2EFE7',
     overflow: 'hidden',
     boxShadow: '0 20px 50px rgba(15, 61, 36, 0.08)',
-  },
-  dashboardMockupHeader: {
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderBottomColor: '#EDF2EE',
-    gap: 14,
-  },
-  mockupHeaderLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  mockupLogoDot: {
-    width: 28,
-    height: 28,
-    borderRadius: 8,
-    backgroundColor: '#16A34A',
-  },
-  mockupGreeting: {
-    fontSize: 14,
-    fontWeight: '800',
-    color: '#0F3D24',
-  },
-  mockupGreetingSub: {
-    fontSize: 11,
-    color: '#64748B',
-  },
-  mockupSearchWrap: {
-    flex: 1,
-    maxWidth: 320,
-    backgroundColor: '#F8FAF9',
-    borderRadius: 20,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: '#E2EFE7',
-  },
-  mockupSearchPlaceholder: {
-    fontSize: 12,
-    color: '#94A3B8',
-  },
-  mockupUpgradePill: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    backgroundColor: '#0F172A',
-    paddingHorizontal: 16,
-    paddingVertical: 9,
-    borderRadius: 20,
-  },
-  mockupUpgradeText: {
-    fontSize: 12,
-    fontWeight: '800',
-    color: '#FFFFFF',
   },
   pastoralCanvas: {
     height: 460,

@@ -8,7 +8,18 @@ export const getApiBaseUrl = (): string => {
   if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.VITE_API_URL) {
     return (import.meta as any).env.VITE_API_URL;
   }
-  return 'http://localhost:8000';
+
+  // If in browser on localhost or loopback, target backend server on port 8000
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return 'http://127.0.0.1:8000';
+    }
+    // On production (e.g. Vercel deployment), use relative origin or empty string
+    return '';
+  }
+
+  return 'http://127.0.0.1:8000';
 };
 
 // In-memory active auth token for instant synchronous access across API client calls
